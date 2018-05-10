@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: localhost
--- Tiempo de generación: 24-04-2018 a las 01:46:12
+-- Tiempo de generación: 10-05-2018 a las 00:51:03
 -- Versión del servidor: 5.6.38
 -- Versión de PHP: 7.2.1
 
@@ -49,6 +49,14 @@ CREATE TABLE `elementosPedido` (
   `cantidad` int(11) NOT NULL,
   `subtotal` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Volcado de datos para la tabla `elementosPedido`
+--
+
+INSERT INTO `elementosPedido` (`id`, `idPedido`, `idComida`, `nombreComida`, `precioComida`, `cantidad`, `subtotal`) VALUES
+(1, 1, 1, 'Orden de burritos', 22, 3, 66),
+(2, 1, 2, 'Molletes', 40, 2, 80);
 
 -- --------------------------------------------------------
 
@@ -116,6 +124,13 @@ CREATE TABLE `pedidos` (
   `total` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Volcado de datos para la tabla `pedidos`
+--
+
+INSERT INTO `pedidos` (`id`, `idUsuario`, `idEstadoPedido`, `fecha`, `total`) VALUES
+(1, 3, 1, '2018-05-09 16:06:05', 146);
+
 -- --------------------------------------------------------
 
 --
@@ -133,7 +148,8 @@ CREATE TABLE `tipoUsuario` (
 
 INSERT INTO `tipoUsuario` (`id`, `descripcion`) VALUES
 (1, 'Administrador'),
-(2, 'Cliente');
+(2, 'Cliente'),
+(3, 'Cocinero');
 
 -- --------------------------------------------------------
 
@@ -157,10 +173,11 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `idTipoUsuario`, `name`, `email`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 1, 'Emiliano', 'emiliano@correo.com', '$2y$10$kxEHxdfcAxboShoKaMfsCuRq0pK/Wrc9WdQ4buPlL4et1KAD.iBDu', 'pckPmGzozEX8Sny2FwugsMHo6zOO6D6Zlic2aLiW9lxnWlS0Vnq9vw1AtbFn', '2018-03-01 06:36:30', '2018-04-24 08:27:37'),
+(1, 1, 'Emiliano', 'emiliano@correo.com', '$2y$10$kxEHxdfcAxboShoKaMfsCuRq0pK/Wrc9WdQ4buPlL4et1KAD.iBDu', '3rDpiiKCEBUvz40ZIKGuZPvNGBFpqnoz9yo3d7vKKmlkZKxEOUNGrasl2HVY', '2018-03-01 06:36:30', '2018-05-10 06:02:16'),
 (2, 1, NULL, 'nuevo@correo.com', '$2y$10$YU.Sa/wc7krfkfbrxA2uw.jn7WQDs4oZ0BSjWGhsJs/ut54wg/ANa', 'JfPMNoAGuhlEeetjHwi2rPlgHg9rmspNZiLCEPf8Br2dzEMO9i95RXTZyNzA', '2018-04-19 07:07:23', '2018-04-19 07:07:58'),
-(3, 2, NULL, 'cliente@correo.com', '$2y$10$ZLF1Bt6/Wy.iGS4r2/EwQe0FF2LBTbT.oJX6RYq1gmrgqC0U4s56a', 'SYQQyvdpc5wvKqV2G5m2PqGAtR65rNsf8BNtybTXGUFu0za2kGMrEwyaolUM', '2018-04-19 07:15:10', '2018-04-24 08:27:23'),
-(4, 2, NULL, 'usuario@correo.com', '$2y$10$MfhFvPRe76xiPOCLx9Hbh.jwaOU2rWBWhsoThD1YJLl9dYL/NVy3S', NULL, '2018-04-19 07:46:48', '2018-04-19 07:46:48');
+(3, 2, NULL, 'cliente@correo.com', '$2y$10$ZLF1Bt6/Wy.iGS4r2/EwQe0FF2LBTbT.oJX6RYq1gmrgqC0U4s56a', 'rr1i6i1FOPfsjjMzOVm7Ro6aXzH6KfyBOrsObNCCA8ISsJ69oBHH5uQUMAmF', '2018-04-19 07:15:10', '2018-05-10 06:06:39'),
+(4, 2, NULL, 'usuario@correo.com', '$2y$10$MfhFvPRe76xiPOCLx9Hbh.jwaOU2rWBWhsoThD1YJLl9dYL/NVy3S', NULL, '2018-04-19 07:46:48', '2018-04-19 07:46:48'),
+(5, 3, NULL, 'cocinero@correo.com', '$2y$10$XsS0Iwqn0RJLwSZs2WNhzOdfKo5.MJq3bKzSNUf4b29Yte/xd2eeW', 'qoC6brWwM863IeCiAF5u2TloNM49dn0vDRKSfDunQlDl1G2DXtvtK8GbTlFo', '2018-05-10 06:02:10', '2018-05-10 06:05:48');
 
 --
 -- Índices para tablas volcadas
@@ -229,7 +246,7 @@ ALTER TABLE `comidas`
 -- AUTO_INCREMENT de la tabla `elementosPedido`
 --
 ALTER TABLE `elementosPedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `estadosPedido`
@@ -241,19 +258,19 @@ ALTER TABLE `estadosPedido`
 -- AUTO_INCREMENT de la tabla `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT de la tabla `tipoUsuario`
 --
 ALTER TABLE `tipoUsuario`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT de la tabla `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restricciones para tablas volcadas
